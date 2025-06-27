@@ -27,16 +27,18 @@ jobs:
         run: |
           sh -c "$(curl -sSfL https://release.solana.com/v1.17.31/install)"
           echo "$HOME/.local/share/solana/install/active_release/bin" >> $GITHUB_PATH
+          echo "$HOME/.cargo/bin" >> $GITHUB_PATH
 
       - name: Install Anchor CLI
         run: |
           cargo install --git https://github.com/coral-xyz/anchor anchor-cli --locked
 
-      - name: Run build
+      - name: Run Anchor Build
+        working-directory: ./my_oapp
         run: |
           anchor build
 
-      - name: Run Anchor tests
+      - name: Run Anchor Tests
+        working-directory: ./my_oapp
         run: |
-          cd my_oapp
           anchor test --skip-build
