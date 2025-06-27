@@ -32,9 +32,8 @@ jobs:
         run: |
           cargo install --git https://github.com/coral-xyz/anchor anchor-cli --locked
 
-      - name: Build Anchor project
+      - name: Run build
         run: |
-          cd my_oapp
           anchor build
 
       - name: Run Anchor tests
